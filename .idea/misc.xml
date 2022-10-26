@@ -6,7 +6,9 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.231722958529286" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.16732330322265626" />
+        <entry key="app/src/main/res/layout/fragment_member.xml" value="0.2201795639162035" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21504916631038906" />
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.208026123046875" />
         <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.27813415527343754" />
