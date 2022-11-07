@@ -1,33 +1,79 @@
 {
   "project_info": {
-    "project_number": "279500103946",
-    "project_id": "pet-application-6dfa6",
-    "storage_bucket": "pet-application-6dfa6.appspot.com"
+    "project_number": "556567789567",
+    "firebase_url": "https://chatbypetapplication-default-rtdb.firebaseio.com",
+    "project_id": "chatbypetapplication",
+    "storage_bucket": "chatbypetapplication.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:279500103946:android:803767e3b5807ef1e75af3",
+        "mobilesdk_app_id": "1:556567789567:android:0da6af07f440d2de7631ca",
         "android_client_info": {
-          "package_name": "com.example.pet_application"
+          "package_name": "com.example.happydog"
         }
       },
       "oauth_client": [
         {
-          "client_id": "279500103946-usei2h4c1mvcahvdf7o09ch9f32agff9.apps.googleusercontent.com",
+          "client_id": "556567789567-8a9mr4vsafb841jrpn6rngt72bh3pkpl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.happydog",
+            "certificate_hash": "db90f866694c5ea1ddfe7340698f8a3ec4fc4391"
+          }
+        },
+        {
+          "client_id": "556567789567-ok2gcvbncqijrrkpbvrngkbto8qo52rj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCTLohn9TaGzRCCfBJ-S_X8xJZM8rFMioY"
+          "current_key": "AIzaSyCjEQZCsImgxu6BuoX1bOzxM911rbb8A0Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "279500103946-usei2h4c1mvcahvdf7o09ch9f32agff9.apps.googleusercontent.com",
+              "client_id": "556567789567-ok2gcvbncqijrrkpbvrngkbto8qo52rj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556567789567:android:0d4add5c74a166057631ca",
+        "android_client_info": {
+          "package_name": "com.example.HappyDog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556567789567-2eq3qadloq7jmbqe7ku7dop0jla84rmv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.HappyDog",
+            "certificate_hash": "db90f866694c5ea1ddfe7340698f8a3ec4fc4391"
+          }
+        },
+        {
+          "client_id": "556567789567-ok2gcvbncqijrrkpbvrngkbto8qo52rj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjEQZCsImgxu6BuoX1bOzxM911rbb8A0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556567789567-ok2gcvbncqijrrkpbvrngkbto8qo52rj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
