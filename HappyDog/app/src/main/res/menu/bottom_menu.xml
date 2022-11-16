@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_profile"
+        android:title="프로필"
+        android:icon="@drawable/ic_baseline_pets_24"
+        />
+    <item
+        android:id="@+id/menu_friend"
+        android:title="친구"
+        android:icon="@drawable/ic_baseline_people_24"
+        />
+    <item
+        android:id="@+id/menu_chat"
+        android:title="채팅"
+        android:icon="@drawable/ic_baseline_chat_24"
+        />
+    <item
+        android:id="@+id/menu_option"
+        android:title="옵션"
+        android:icon="@drawable/ic_baseline_check_circle_24"
+        />
+
+</menu>
