@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         auth = Firebase.auth
- 
+
         bottom_nav.setOnNavigationItemSelectedListener(BottomNavItemSelectedListener)
 
         friendFragment = FriendFragment.newInstance()
