@@ -13,7 +13,7 @@ Kotlin + Firebase, RealTimeDatabase 기반의 어플리케이션
 - Mac OS
 - + Spring boot
 
-## 주요 키워드
+## 📌주요 키워드
 
 - Kotlin 문법과 기초 학습 기회
 - 별도 서버 없이 Firebase 사용과 RealTimeDatabase를 이용한 채팅 서비스 구현
