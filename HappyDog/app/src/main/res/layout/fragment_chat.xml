@@ -9,6 +9,7 @@
         android:layout_height="60dp"
         android:orientation="horizontal">
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +22,13 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#000000"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatfragment_recyclerview"
