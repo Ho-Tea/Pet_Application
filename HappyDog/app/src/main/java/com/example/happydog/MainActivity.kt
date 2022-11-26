@@ -2,10 +2,7 @@ package com.example.happydog
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.happydog.fragment.ChatFragment
-import com.example.happydog.fragment.FriendFragment
-import com.example.happydog.fragment.OptionFragment
-import com.example.happydog.fragment.ProfileFragment
+import com.example.happydog.fragment.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -17,7 +14,7 @@ private lateinit var auth: FirebaseAuth
 private lateinit var friendFragment: FriendFragment
 private lateinit var chatFragment: ChatFragment
 private lateinit var profileFragment: ProfileFragment
-private lateinit var optionFragment: OptionFragment
+private lateinit var accoutFragment: AccountFragment
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
@@ -48,8 +45,8 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, profileFragment).commit()
             }
             R.id.menu_option -> {
-                optionFragment = OptionFragment.newInstance()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, optionFragment).commit()
+                accoutFragment = AccountFragment.newInstance("1","2")
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, accoutFragment).commit()
             }
         }
         true
