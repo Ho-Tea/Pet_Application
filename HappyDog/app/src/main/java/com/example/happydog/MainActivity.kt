@@ -9,15 +9,23 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 private lateinit var auth: FirebaseAuth
 
 private lateinit var friendFragment: FriendFragment
 private lateinit var chatFragment: ChatFragment
 private lateinit var profileFragment: ProfileFragment
 private lateinit var accoutFragment: AccountFragment
+private lateinit var setProfileFragment: SetProfileFragment
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
+    fun fragmentChange(index: Int){
+        if (index == 1){
+            supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,
+                setProfileFragment).commit()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,8 +34,9 @@ class MainActivity : AppCompatActivity() {
         bottom_nav.setOnNavigationItemSelectedListener(BottomNavItemSelectedListener)
 
         friendFragment = FriendFragment.newInstance()
-//        supportFragmentManager.beginTransaction().add(R.id.fragments_frame, friendFragment).commit()
         supportFragmentManager.beginTransaction().add(R.id.fragments_frame, friendFragment).commit()
+//        accoutFragment = AccountFragment.newInstance()
+//        supportFragmentManager.beginTransaction().add(R.id.fragments_frame, friendFragment).commit()
 
     }
     private val BottomNavItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener{
@@ -51,6 +60,8 @@ class MainActivity : AppCompatActivity() {
         }
         true
     }
+
+
 
 
 }
