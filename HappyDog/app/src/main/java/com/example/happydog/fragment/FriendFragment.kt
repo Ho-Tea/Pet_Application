@@ -1,37 +1,50 @@
 package com.example.happydog.fragment
 
 import android.annotation.SuppressLint
+import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.happydog.MainActivity
 import com.example.happydog.MessageActivity
-import com.example.happydog.model.Friend
 import com.example.happydog.R
+import com.example.happydog.model.Profile
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_home.*
+
 
 class FriendFragment : Fragment() {
-    companion object{
-        fun newInstance() : FriendFragment {
+    companion object {
+        fun newInstance(): FriendFragment {
             return FriendFragment()
         }
     }
 
     private lateinit var database: DatabaseReference
-    private var friend : ArrayList<Friend> = arrayListOf()
+    private var friend: ArrayList<Profile> = arrayListOf()
+    private var filterFriends: ArrayList<Profile> = arrayListOf()
+    private lateinit var adapter_s:RecyclerViewAdapter
+    var textlength = 0
 
     //메모리에 올라갔을 때
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,12 +57,15 @@ class FriendFragment : Fragment() {
         super.onAttach(context)
     }
 
+
     //뷰가 생성되었을 때
     //프레그먼트와 레이아웃을 연결시켜주는 부분
     @SuppressLint("UseRequireInsteadOfGet")
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         database = Firebase.database.reference
         val view = inflater.inflate(R.layout.fragment_home, container, false)
@@ -58,53 +74,143 @@ class FriendFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = RecyclerViewAdapter()
 
+        val search_edt=view.findViewById<EditText>(R.id.search_view)
+        search_edt.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(edit: Editable?) {
+            }
+            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+                textlength=search_edt.text.length
+                filterFriends.clear()
+                var str_sequence=charSequence.toString()
+                for(i in friend.indices){
+                    if(friend[i].name.toString().contains(str_sequence) && friend[i].uid.toString() != Firebase.auth.currentUser?.uid.toString())
+                        filterFriends.add(friend[i])
+
+                }
+                recyclerView.adapter = SecondRecyclerViewAdapter()
+            }
+        })
+
+
         return view
+    }
+    inner class SecondRecyclerViewAdapter : RecyclerView.Adapter<SecondRecyclerViewAdapter.SecondCustomViewHolder>(){
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SecondCustomViewHolder {
+
+            return SecondCustomViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.item_home, parent, false)
+            )
+        }
+
+        inner class SecondCustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val imageView: ImageView = itemView.findViewById(R.id.home_item_iv)
+            val textView: TextView = itemView.findViewById(R.id.home_item_tv)
+            val textViewEmail: TextView = itemView.findViewById(R.id.home_item_email)
+//
+        }
+
+        override fun onBindViewHolder(holder: SecondCustomViewHolder, position: Int) {
+                Glide.with(holder.itemView.context).load(filterFriends[position].profileImageUrl)
+                    .apply(RequestOptions().circleCrop())
+                    .into(holder.imageView)
+                holder.textView.text = filterFriends[position].name
+                holder.textViewEmail.text = filterFriends[position].email
+                holder.imageView.setOnClickListener {
+                    (activity as MainActivity).fragmentChange(
+                        FriendProfileFragment.newInstance(
+                            filterFriends[position].uid.toString()
+                        )
+                    )
+                }
+                holder.itemView.setOnClickListener {
+                    val intent = Intent(context, MessageActivity::class.java)
+                    intent.putExtra("destinationUid", filterFriends[position].uid)
+                    context?.startActivity(intent)
+                }
+
+        }
+
+
+        override fun getItemCount(): Int {
+            return filterFriends.size
+        }
     }
 
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder>() {
-
         init {
             val myUid = Firebase.auth.currentUser?.uid.toString()
-            FirebaseDatabase.getInstance().reference.child("users").addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
-                }
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    friend.clear()
-                    for(data in snapshot.children){
-                        val item = data.getValue<Friend>()
-                        if(item?.uid.equals(myUid)) { continue } // 본인은 친구창에서 제외
-                        friend.add(item!!)
+            FirebaseDatabase.getInstance().reference.child("users")
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
                     }
-                    notifyDataSetChanged()
-                }
-            })
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        friend.clear()
+                        for (data in snapshot.children) {
+                            val item = data.getValue<Profile>()
+                            if (item?.uid.equals(myUid)) {
+                                friend.add(0, item!!)
+                                continue
+                            } // 본인은 친구창에서 제외
+                            friend.add(item!!)
+                        }
+                        notifyDataSetChanged()
+                    }
+                })
+
         }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-            return CustomViewHolder(LayoutInflater.from(context).inflate(R.layout.item_home, parent, false))
+
+            return CustomViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.item_home, parent, false)
+            )
         }
 
         inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val imageView: ImageView = itemView.findViewById(R.id.home_item_iv)
-            val textView : TextView = itemView.findViewById(R.id.home_item_tv)
-            val textViewEmail : TextView = itemView.findViewById(R.id.home_item_email)
+            val textView: TextView = itemView.findViewById(R.id.home_item_tv)
+            val textViewEmail: TextView = itemView.findViewById(R.id.home_item_email)
+//            val selfImageView: ImageView = itemView.findViewById(R.id.home_item_self_iv)
+//            val selfTextView : TextView = itemView.findViewById(R.id.home_item_self_tv)
+//            val heartImage : ImageView = itemView.findViewById(R.id.home_item_self_vv)
         }
 
         override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-            Glide.with(holder.itemView.context).load(friend[position].profileImageUrl)
-                .apply(RequestOptions().circleCrop())
-                .into(holder.imageView)
-            holder.textView.text = friend[position].name
-            holder.textViewEmail.text = friend[position].email
-
-            holder.itemView.setOnClickListener{
-                val intent = Intent(context, MessageActivity::class.java)
-                intent.putExtra("destinationUid", friend[position].uid)
-                context?.startActivity(intent)
+            if (position == 0) {
+                Glide.with(holder.itemView.context).load(friend[position].profileImageUrl)
+                    .apply(RequestOptions().circleCrop())
+                    .into(holder.imageView)
+                holder.textView.text = "내 프로필"
+                holder.itemView.setOnClickListener {
+                    (activity as MainActivity).fragmentChange(ProfileFragment.newInstance())
+                }
+            } else {
+                Glide.with(holder.itemView.context).load(friend[position].profileImageUrl)
+                    .apply(RequestOptions().circleCrop())
+                    .into(holder.imageView)
+                holder.textView.text = friend[position].name
+                holder.textViewEmail.text = friend[position].email
+                holder.imageView.setOnClickListener {
+                    (activity as MainActivity).fragmentChange(FriendProfileFragment.newInstance(friend[position].uid.toString()))
+                }
+                holder.itemView.setOnClickListener {
+                    val intent = Intent(context, MessageActivity::class.java)
+                    intent.putExtra("destinationUid", friend[position].uid)
+                    context?.startActivity(intent)
+                }
             }
+
+
         }
+
 
         override fun getItemCount(): Int {
             return friend.size
         }
+
     }
 }
