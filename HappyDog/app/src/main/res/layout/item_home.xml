@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
+    android:background="#f1f3f5"
     android:orientation="horizontal">
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="#FFFFFF"
+        android:layout_width="401dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="6dp"
+        app:layout_goneMarginBottom="6dp"
+        android:background="@drawable/bar_second"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
