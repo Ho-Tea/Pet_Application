@@ -1,6 +1,7 @@
 package com.example.happydog.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.happydog.MainActivity
+import com.example.happydog.MessageActivity
 import com.example.happydog.R
 import com.example.happydog.model.Profile
 import com.google.firebase.auth.ktx.auth
@@ -44,6 +46,7 @@ class FriendProfileFragment : Fragment() {
         private val fireStorage = FirebaseStorage.getInstance().reference
         private val fireDatabase = FirebaseDatabase.getInstance().reference
         private lateinit var uid : String
+        private var friendUid : String? = "0"
         fun newInstance(uid : String) : FriendProfileFragment {
             this.uid = uid
             return FriendProfileFragment()
@@ -71,11 +74,13 @@ class FriendProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //view 선언을 안하고 return에 바로 적용시키면 glide가 작동을 안함
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_friend_profile, container, false)
         val photo = view?.findViewById<ImageView>(R.id.profile_imageview)
-        val email = view?.findViewById<TextView>(R.id.profile_textview_email)
         val name = view?.findViewById<TextView>(R.id.profile_textview_name)
-
+        val email = view?.findViewById<TextView>(R.id.profile_textview_email)
+        val cancelButton = view?.findViewById<ImageView>(R.id.cancel)
+        val msgButton = view?.findViewById<ImageView>(R.id.sendMessage)
+        val requestPet = view?.findViewById<ImageView>(R.id.requestContract)
 
         //프로필 구현
         fireDatabase.child("users").child(uid).addListenerForSingleValueEvent(object :
@@ -90,9 +95,18 @@ class FriendProfileFragment : Fragment() {
                     .into(photo!!)
                 email?.text = userProfile?.email
                 name?.text = userProfile?.name
+                friendUid = userProfile?.uid
 
             }
         })
+        cancelButton?.setOnClickListener {
+            (activity as MainActivity).fragmentChange(FriendFragment.newInstance())
+        }
+        msgButton?.setOnClickListener {
+            val intent = Intent(context, MessageActivity::class.java)
+            intent.putExtra("destinationUid", friendUid)
+            context?.startActivity(intent)
+        }
 
         return view
     }

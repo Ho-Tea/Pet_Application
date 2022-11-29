@@ -73,7 +73,7 @@ class FriendFragment : Fragment() {
         //this는 액티비티에서 사용가능, 프래그먼트는 requireContext()로 context 가져오기
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = RecyclerViewAdapter()
-
+        val cancelButton = view.findViewById<ImageView>(R.id.cancelItem)
         val search_edt=view.findViewById<EditText>(R.id.search_view)
         search_edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(edit: Editable?) {
@@ -93,6 +93,9 @@ class FriendFragment : Fragment() {
                 recyclerView.adapter = SecondRecyclerViewAdapter()
             }
         })
+        cancelButton?.setOnClickListener {
+            (activity as MainActivity).fragmentChange(newInstance())
+        }
 
 
         return view
@@ -109,6 +112,7 @@ class FriendFragment : Fragment() {
             val imageView: ImageView = itemView.findViewById(R.id.home_item_iv)
             val textView: TextView = itemView.findViewById(R.id.home_item_tv)
             val textViewEmail: TextView = itemView.findViewById(R.id.home_item_email)
+
 //
         }
 
@@ -185,6 +189,7 @@ class FriendFragment : Fragment() {
                     .apply(RequestOptions().circleCrop())
                     .into(holder.imageView)
                 holder.textView.text = "내 프로필"
+                holder.textViewEmail.text = ""
                 holder.itemView.setOnClickListener {
                     (activity as MainActivity).fragmentChange(ProfileFragment.newInstance())
                 }
@@ -194,14 +199,14 @@ class FriendFragment : Fragment() {
                     .into(holder.imageView)
                 holder.textView.text = friend[position].name
                 holder.textViewEmail.text = friend[position].email
-                holder.imageView.setOnClickListener {
+                holder.itemView.setOnClickListener {
                     (activity as MainActivity).fragmentChange(FriendProfileFragment.newInstance(friend[position].uid.toString()))
                 }
-                holder.itemView.setOnClickListener {
-                    val intent = Intent(context, MessageActivity::class.java)
-                    intent.putExtra("destinationUid", friend[position].uid)
-                    context?.startActivity(intent)
-                }
+//                holder.itemView.setOnClickListener {
+//                    val intent = Intent(context, MessageActivity::class.java)
+//                    intent.putExtra("destinationUid", friend[position].uid)
+//                    context?.startActivity(intent)
+//                }
             }
 
 

@@ -52,10 +52,10 @@ class MainActivity : AppCompatActivity() {
                 profileFragment = ProfileFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, profileFragment).commit()
             }
-            R.id.menu_option -> {
-                accoutFragment = AccountFragment.newInstance("1","2")
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, accoutFragment).commit()
-            }
+//            R.id.menu_option -> {
+//                accoutFragment = AccountFragment.newInstance("1","2")
+//                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, accoutFragment).commit()
+//            }
         }
         true
     }
