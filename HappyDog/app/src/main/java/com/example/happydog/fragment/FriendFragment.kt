@@ -43,7 +43,6 @@ class FriendFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private var friend: ArrayList<Profile> = arrayListOf()
     private var filterFriends: ArrayList<Profile> = arrayListOf()
-    private lateinit var adapter_s:RecyclerViewAdapter
     var textlength = 0
 
     //메모리에 올라갔을 때

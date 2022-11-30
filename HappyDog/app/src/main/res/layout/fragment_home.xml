@@ -29,11 +29,11 @@
 
         <ImageView
             android:id="@+id/addpet_image"
-            android:layout_width="30dp"
-            android:layout_marginTop="3dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="280dp"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="3dp"
             android:src="@drawable/addpet"></ImageView>
 
     </LinearLayout>

@@ -6,29 +6,74 @@
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bar_second"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="cursive"
-            android:text="채팅"
+            android:text="Chating"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 
     </LinearLayout>
-    <View
+
+    <!--    <View-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="2dp"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:background="#000000"-->
+    <!--        />-->
+    <!--    <androidx.appcompat.widget.SearchView-->
+    <!--        android:id="@+id/search_view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:iconifiedByDefault="false"-->
+    <!--        app:queryHint="검색어를 입력하시오" />-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#000000"/>
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="2dp"
+            android:src="@drawable/search"
+            >
+
+        </ImageView>
+
+        <EditText
+            android:id="@+id/search_view"
+            android:layout_width="347dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:hint="아이디를 검색하세요.">
+
+        </EditText>
+
+        <ImageView
+            android:id="@+id/cancelItem"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/cancel">
+
+        </ImageView>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatfragment_recyclerview"
