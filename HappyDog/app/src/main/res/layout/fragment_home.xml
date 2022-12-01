@@ -9,9 +9,9 @@
     tools:context=".fragment.FriendFragment">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="65dp"
         android:orientation="horizontal"
-        android:background="@drawable/bar_second"
+        android:background="#f1f3f5"
         >
 
         <TextView
@@ -20,7 +20,7 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="2dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="cursive"
             android:text="HappyDog"
             android:textColor="@color/black"
@@ -29,10 +29,10 @@
 
         <ImageView
             android:id="@+id/addpet_image"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
+            android:layout_width="67dp"
+            android:layout_height="54dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="270dp"
+            android:layout_marginLeft="260dp"
             android:layout_marginTop="3dp"
             android:src="@drawable/addpet"></ImageView>
 
@@ -54,6 +54,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         android:orientation="horizontal">
 
     <ImageView
@@ -68,7 +70,8 @@
 
         <EditText
             android:id="@+id/search_view"
-            android:layout_width="347dp"
+            android:layout_marginLeft="4dp"
+            android:layout_width="330dp"
             android:layout_height="43dp"
             android:layout_gravity="center"
             android:hint="아이디를 검색하세요.">
@@ -79,6 +82,7 @@
             android:id="@+id/cancelItem"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginLeft="3dp"
             android:layout_marginTop="3dp"
             android:src="@drawable/cancel">
 
