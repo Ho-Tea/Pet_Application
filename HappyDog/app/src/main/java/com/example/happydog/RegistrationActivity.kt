@@ -95,7 +95,7 @@ class RegistrationActivity: AppCompatActivity() {
                                                         val friend = Friend(email.toString(), name.toString(), userProfile.toString(), userIdSt)
                                                         database.child("users").child(userId.toString()).setValue(friend)
                                                     }
-                                        }
+                                        } 
                                 Toast.makeText(this, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                                 Log.e(TAG, "$userId")
                                 startActivity(intent)
