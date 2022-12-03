@@ -1,6 +1,7 @@
 package com.example.happydog.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +16,6 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.happydog.MainActivity
@@ -30,6 +30,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_profile.*
+
 
 class ProfileFragment : Fragment() {
     companion object{
@@ -96,7 +97,7 @@ class ProfileFragment : Fragment() {
         val location = view?.findViewById<TextView>(R.id.profile_textview_location)
         val mbti = view?.findViewById<TextView>(R.id.profile_textview_tendency)
         val button = view?.findViewById<Button>(R.id.profile_button)
-
+        val mbti_button = view?.findViewById<ImageView>(R.id.mbti_button)
 
 
 
@@ -133,6 +134,11 @@ class ProfileFragment : Fragment() {
 //                Toast.makeText(requireContext(), "이름이 변경되었습니다.", Toast.LENGTH_SHORT).show()
 //            }
 
+        }
+
+        mbti_button?.setOnClickListener{
+            val MyIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://doda.app/quiz/wap7xT8Dlu"))
+            startActivity(MyIntent)
         }
 
         return view
