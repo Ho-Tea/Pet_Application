@@ -91,9 +91,7 @@ class ProfileFragment : Fragment() {
         val photo = view?.findViewById<ImageView>(R.id.profile_imageview)
         val email = view?.findViewById<TextView>(R.id.profile_textview_email)
         val name = view?.findViewById<TextView>(R.id.profile_textview_name)
-        val age = view?.findViewById<TextView>(R.id.profile_textview_age)
         val sex = view?.findViewById<TextView>(R.id.profile_textview_sex)
-        val kg = view?.findViewById<TextView>(R.id.profile_textview_kg)
         val type = view?.findViewById<TextView>(R.id.profile_textview_type)
         val location = view?.findViewById<TextView>(R.id.profile_textview_location)
         val mbti = view?.findViewById<TextView>(R.id.profile_textview_tendency)
@@ -114,9 +112,7 @@ class ProfileFragment : Fragment() {
                     .into(photo!!)
                 email?.text = userProfile?.email
                 name?.text = userProfile?.name
-                age?.text = userProfile?.age
                 sex?.text = userProfile?.sex
-                kg?.text = userProfile?.kg
                 type?.text = userProfile?.type
                 location?.text = userProfile?.location
                 mbti?.text = userProfile?.tendency
