@@ -5,10 +5,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -48,6 +45,7 @@ class MessageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_message)
         val imageView = findViewById<ImageView>(R.id.messageActivity_ImageView)
         val editText = findViewById<TextView>(R.id.messageActivity_editText)
+        val button = findViewById<ImageView>(R.id.cancel)
         //메세지를 보낸 시간
         val time = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("MM월dd일 hh:mm")
@@ -57,7 +55,9 @@ class MessageActivity : AppCompatActivity() {
         uid = Firebase.auth.currentUser?.uid.toString()
         recyclerView = findViewById(R.id.messageActivity_recyclerview)
 
-
+        button?.setOnClickListener{
+            onBackPressed()
+        }
 
         imageView.setOnClickListener {
             Log.d("클릭 시 dest", "$destinationUid")
@@ -88,6 +88,7 @@ class MessageActivity : AppCompatActivity() {
 
             checkChatRoom()
     }
+
 
     private fun checkChatRoom(){
         fireDatabase.child("chatrooms").orderByChild("users/$uid").equalTo(true)
