@@ -1,6 +1,7 @@
 package com.example.happydog
 
 import android.annotation.SuppressLint
+
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -11,11 +12,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+
 import com.example.happydog.model.ChatModel
 import com.example.happydog.model.ChatModel.Comment
 import com.example.happydog.model.Friend
@@ -28,6 +31,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class MessageActivity : AppCompatActivity() {
 
     private val fireDatabase = FirebaseDatabase.getInstance().reference
@@ -36,13 +40,14 @@ class MessageActivity : AppCompatActivity() {
     private var uid : String? = null
     private var recyclerView : RecyclerView? = null
 
+
+
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message)
         val imageView = findViewById<ImageView>(R.id.messageActivity_ImageView)
         val editText = findViewById<TextView>(R.id.messageActivity_editText)
-
         //메세지를 보낸 시간
         val time = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("MM월dd일 hh:mm")
@@ -51,6 +56,8 @@ class MessageActivity : AppCompatActivity() {
         destinationUid = intent.getStringExtra("destinationUid")
         uid = Firebase.auth.currentUser?.uid.toString()
         recyclerView = findViewById(R.id.messageActivity_recyclerview)
+
+
 
         imageView.setOnClickListener {
             Log.d("클릭 시 dest", "$destinationUid")
@@ -78,7 +85,8 @@ class MessageActivity : AppCompatActivity() {
                 Log.d("chatUidNotNull dest", "$destinationUid")
             }
         }
-        checkChatRoom()
+
+            checkChatRoom()
     }
 
     private fun checkChatRoom(){
