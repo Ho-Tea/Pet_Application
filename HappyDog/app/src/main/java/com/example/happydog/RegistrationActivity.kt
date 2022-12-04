@@ -2,6 +2,7 @@ package com.example.happydog
 
 import android.Manifest
 import android.content.Intent
+import android.location.Geocoder
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.example.happydog.model.Friend
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -22,6 +24,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_registration.*
+import java.util.*
+
 
 
 private lateinit var auth: FirebaseAuth
@@ -43,6 +47,39 @@ class RegistrationActivity: AppCompatActivity() {
                 Log.d("이미지", "실패")
             }
         }
+    private fun getAddress(position: LatLng): String {
+        val geoCoder = Geocoder(this, Locale.KOREA)
+        var addr = "주소 오류"
+
+        //GRPC 오류? try catch 문으로 오류 대처
+        try {
+            addr = geoCoder.getFromLocation(position.latitude, position.longitude, 1).first().getAddressLine(0)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        Toast.makeText(this, addr, Toast.LENGTH_SHORT).show()
+        return addr
+    }
+
+    private fun getLatLng(address:String) : LatLng {
+        val geoCoder = Geocoder(this, Locale.KOREA)   // Geocoder 로 자기 나라에 맞게 설정
+        val list = geoCoder.getFromLocationName(address, 3)
+
+        var location = LatLng(37.554891, 126.970814)     //임시 서울역
+
+        if(list != null){
+            if (list.size ==0){
+                Log.d("GeoCoding", "해당 주소로 찾는 위도 경도가 없습니다. 올바른 주소를 입력해주세요.")
+                Toast.makeText(this, "해당 주소로 찾는 위도 경도가 없습니다. 올바른 주소를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            }else{
+                val addressLatLng = list[0]
+                location = LatLng(addressLatLng.latitude, addressLatLng.longitude)
+                return location
+            }
+        }
+
+        return location
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +92,11 @@ class RegistrationActivity: AppCompatActivity() {
         val email = et_registration_id.text
         val password = et_registration_password.text
         val name = findViewById<EditText>(R.id.et_registration_name).text
+        val location = findViewById<EditText>(R.id.et_registration_location).text
         val button = findViewById<Button>(R.id.btn_registration)
         val profile = findViewById<ImageView>(R.id.registration_iv)
+        val location_button = findViewById<ImageView>(R.id.location)
+
         var profileCheck = false
 
         profile.setOnClickListener{
@@ -67,10 +107,14 @@ class RegistrationActivity: AppCompatActivity() {
         }
 
         val intent = Intent(this, LoginActivity::class.java)
+        location_button.setOnClickListener{
+            getAddress(getLatLng(location.toString()))
+
+        }
 
         button.setOnClickListener {
-            if(email.isEmpty() && password.isEmpty() && name.isEmpty() && profileCheck)  {
-                Toast.makeText(this, "아이디와 비밀번호, 프로필 사진을 제대로 입력해주세요.", Toast.LENGTH_SHORT).show()
+            if(email.isEmpty() && password.isEmpty() && name.isEmpty() && profileCheck && location.isEmpty())  {
+                Toast.makeText(this, "아이디와 비밀번호, 위치, 프로필 사진을 제대로 입력해주세요.", Toast.LENGTH_SHORT).show()
                 Log.d("Email", "$email, $password")
             }
 
