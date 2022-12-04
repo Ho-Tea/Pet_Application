@@ -131,12 +131,22 @@ class SetProfileFragment : Fragment() {
             getContent.launch(intentImage)
         }
         button?.setOnClickListener{
-            if(name?.text!!.isNotEmpty()) {
+            if(name?.text!!.isNotEmpty()&&sex?.text!!.isNotEmpty()&&type?.text!!.isNotEmpty()&&mbti?.text!!.isNotEmpty()) {
                 fireDatabase.child("users/$uid/name").setValue(name.text.toString())
                 name.clearFocus()
+                fireDatabase.child("users/$uid/sex").setValue(sex.text.toString())
+                sex.clearFocus()
+                fireDatabase.child("users/$uid/type").setValue(type.text.toString())
+                type.clearFocus()
+                fireDatabase.child("users/$uid/tendency").setValue(mbti.text.toString())
+                mbti.clearFocus()
                 Toast.makeText(requireContext(), "수정되었습니다.", Toast.LENGTH_SHORT).show()
+                (activity as MainActivity).fragmentChange(ProfileFragment.newInstance()) // 버튼 클릭시 setprofile 프래그머트 호출
             }
-            (activity as MainActivity).fragmentChange(ProfileFragment.newInstance()) // 버튼 클릭시 setprofile 프래그머트 호출
+            else{
+                Toast.makeText(requireContext(), "수정이 실패하였습니다.", Toast.LENGTH_SHORT).show()
+                (activity as MainActivity).fragmentChange(ProfileFragment.newInstance()) // 버튼 클릭시 setprofile 프래그머트 호출
+            }
         }
         return view
     }

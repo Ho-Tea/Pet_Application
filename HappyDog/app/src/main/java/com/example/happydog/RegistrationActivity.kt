@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.example.happydog.model.Friend
+import com.example.happydog.model.Profile
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -136,7 +137,7 @@ class RegistrationActivity: AppCompatActivity() {
                                                     .addOnSuccessListener {
                                                         userProfile = it
                                                         Log.d("이미지 URL", "$userProfile")
-                                                        val friend = Friend(email.toString(), name.toString(), userProfile.toString(), userIdSt)
+                                                        val friend = Profile(email.toString(), name.toString(), userProfile.toString(), userIdSt, location.toString())
                                                         database.child("users").child(userId.toString()).setValue(friend)
                                                     }
                                         }

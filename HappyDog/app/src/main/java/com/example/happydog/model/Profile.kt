@@ -5,8 +5,9 @@ data class Profile(
     val name : String? = null,
     val profileImageUrl : String? = null,
     val uid : String? = null,
-    val sex : String? = null,
-    val type : String? = null,
     val location : String? = null,
-    val tendency : String? = null
+    val tendency : String? = null,
+    val sex : String? = null,
+    val type : String? = null
+
     )

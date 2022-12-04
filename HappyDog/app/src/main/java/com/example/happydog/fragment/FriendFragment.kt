@@ -191,6 +191,7 @@ class FriendFragment : Fragment() {
                 holder.textViewEmail.text = ""
                 holder.itemView.setOnClickListener {
                     (activity as MainActivity).fragmentChange(ProfileFragment.newInstance())
+
                 }
             } else {
                 Glide.with(holder.itemView.context).load(friend[position].profileImageUrl)
