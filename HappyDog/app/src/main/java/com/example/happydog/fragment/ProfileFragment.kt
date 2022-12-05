@@ -98,7 +98,7 @@ class ProfileFragment : Fragment() {
         val mbti = view?.findViewById<TextView>(R.id.profile_textview_tendency)
         val button = view?.findViewById<Button>(R.id.profile_button)
         val mbti_button = view?.findViewById<ImageView>(R.id.mbti_button)
-
+        val account_button = view?.findViewById<ImageView>(R.id.account)
 
 
         //프로필 구현
@@ -139,6 +139,9 @@ class ProfileFragment : Fragment() {
         mbti_button?.setOnClickListener{
             val MyIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://doda.app/quiz/wap7xT8Dlu"))
             startActivity(MyIntent)
+        }
+        account_button?.setOnClickListener{
+            (activity as MainActivity).fragmentChange(AccountFragment.newInstance("1","2")) // 버튼 클릭시 setprofile 프래그머트 호출
         }
 
         return view

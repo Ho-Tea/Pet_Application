@@ -153,7 +153,7 @@
     </ImageView>
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/account"
         android:layout_width="330dp"
         android:layout_height="70dp"
         android:src="@drawable/bar_third"
@@ -170,7 +170,7 @@
         android:src="@drawable/bar_third"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13">
+        app:layout_constraintTop_toBottomOf="@+id/account">
 
     </ImageView>
 
@@ -193,10 +193,10 @@
         android:layout_height="49dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/fire"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
+        app:layout_constraintBottom_toBottomOf="@+id/account"
+        app:layout_constraintEnd_toEndOf="@+id/account"
         app:layout_constraintHorizontal_bias="0.063"
-        app:layout_constraintStart_toStartOf="@+id/imageView13"
+        app:layout_constraintStart_toStartOf="@+id/account"
         app:layout_constraintTop_toBottomOf="@+id/mbti_button"
         app:layout_constraintVertical_bias="0.0">
 
@@ -212,7 +212,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView14"
         app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="@+id/imageView14"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        app:layout_constraintTop_toBottomOf="@+id/account"
         app:layout_constraintVertical_bias="0.076">
 
     </ImageView>
@@ -239,8 +239,8 @@
         android:text="가계부"
         android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
+        app:layout_constraintBottom_toBottomOf="@+id/account"
+        app:layout_constraintEnd_toEndOf="@+id/account"
         app:layout_constraintHorizontal_bias="0.397"
         app:layout_constraintStart_toEndOf="@+id/imageView12"
         app:layout_constraintTop_toBottomOf="@+id/mbti_button">
@@ -259,7 +259,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView14"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toEndOf="@+id/imageView16"
-        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        app:layout_constraintTop_toBottomOf="@+id/account"
         app:layout_constraintVertical_bias="0.076" />
 
     <ImageView
