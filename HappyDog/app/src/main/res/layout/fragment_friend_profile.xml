@@ -7,6 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.FriendProfileFragment">
 
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="409dp"
@@ -65,6 +66,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_textview_email" />
 
+
     <TextView
         android:id="@+id/profile_contract"
         android:layout_width="wrap_content"
@@ -96,6 +98,8 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_contract"
         app:layout_constraintVertical_bias="1.0" />
 
+
+
     <ImageView
         android:id="@+id/sendMessage"
         android:layout_width="148dp"
@@ -109,6 +113,34 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_contract"
         app:layout_constraintVertical_bias="1.0" />
 
+    <TextView
+        android:id="@+id/bb"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:hint="펫시팅 요청"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/requestContract"
+        app:layout_constraintEnd_toEndOf="@+id/requestContract"
+        app:layout_constraintStart_toStartOf="@+id/requestContract"
+        app:layout_constraintTop_toTopOf="@+id/requestContract"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <TextView
+        android:id="@+id/cc"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:hint="대화 요청"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/sendMessage"
+        app:layout_constraintEnd_toEndOf="@+id/sendMessage"
+        app:layout_constraintStart_toStartOf="@+id/sendMessage"
+        app:layout_constraintTop_toTopOf="@+id/sendMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
