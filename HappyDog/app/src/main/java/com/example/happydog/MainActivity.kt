@@ -16,8 +16,9 @@ private lateinit var auth: FirebaseAuth
 private lateinit var friendFragment: FriendFragment
 private lateinit var chatFragment: ChatFragment
 private lateinit var profileFragment: ProfileFragment
-private lateinit var accoutFragment: AccountFragment
+private lateinit var accountFragment: AccountFragment
 private lateinit var setProfileFragment: SetProfileFragment
+private lateinit var feedRecommendFragment:FeedRecommendFragment
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
@@ -52,10 +53,10 @@ class MainActivity : AppCompatActivity() {
                 profileFragment = ProfileFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, profileFragment).commit()
             }
-//            R.id.menu_option -> {
-//                accoutFragment = AccountFragment.newInstance("1","2")
-//                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, accoutFragment).commit()
-//            }
+            //R.id.menu_receipt -> {
+            //    accountFragment = AccountFragment.newInstance("1","2")
+            //    supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, accountFragment).commit()
+            //}
         }
         true
     }
