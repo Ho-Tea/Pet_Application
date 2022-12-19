@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#f1f3f5"
     android:orientation="vertical"
     tools:context=".fragment.AccountFragment">
 
@@ -13,7 +13,7 @@
         android:id="@+id/profile_textview_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="112dp"
         android:gravity="center"
         android:inputType="textPersonName"
@@ -32,14 +32,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
-    </com.github.mikephil.charting.charts.PieChart>
+        tools:ignore="MissingConstraints"></com.github.mikephil.charting.charts.PieChart>
 
     <ImageView
         android:id="@+id/btn_fix"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="220dp"
         android:src="@drawable/bar_third"
@@ -66,12 +66,14 @@
         android:id="@+id/feed_recommend_button"
         android:layout_width="330dp"
         android:layout_height="60dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="148dp"
         android:src="@drawable/bar_third"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"></ImageView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_fix"></ImageView>
 
     <ImageView
         android:id="@+id/feed"
@@ -166,5 +168,15 @@
         app:layout_constraintEnd_toEndOf="@+id/insurance_recommend_button"
         app:layout_constraintHorizontal_bias="0.385"
         app:layout_constraintStart_toEndOf="@+id/insurance" />
+
+    <ImageView
+        android:id="@+id/account_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/go_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

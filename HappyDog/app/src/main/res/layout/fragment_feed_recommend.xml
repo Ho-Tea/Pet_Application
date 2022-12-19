@@ -3,39 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f1f3f5"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.FeedRecommendFragment">
 
-    <TextView
+    <EditText
         android:id="@+id/feed_recommend_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="132dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="136dp"
         android:gravity="center"
         android:text="사료추천"
-        android:textSize="30dp"
         android:textColor="@color/black"
+        android:textSize="30sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/feed_recommend_image"
-        android:layout_width="44dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="108dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/feed"
         app:layout_constraintBottom_toBottomOf="@+id/feed_recommend_title"
-        app:layout_constraintEnd_toEndOf="@+id/feed_recommend_title" />
+        app:layout_constraintEnd_toStartOf="@+id/feed_recommend_title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/feed_recommend1"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="220dp"
         android:src="@drawable/feed_recommend1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +50,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="220dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:src="@drawable/feed_recommend2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +62,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="220dp"
         android:src="@drawable/feed_recommend3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +75,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="220dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:src="@drawable/feed_recommend4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +88,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="220dp"
         android:src="@drawable/feed_recommend5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,12 +101,22 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="220dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:src="@drawable/feed_recommend6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/feed_recommend4" />
+
+    <ImageView
+        android:id="@+id/feed_recommend_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/go_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

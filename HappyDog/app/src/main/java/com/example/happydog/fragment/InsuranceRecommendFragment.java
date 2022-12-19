@@ -2,16 +2,13 @@ package com.example.happydog.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.happydog.R;
 import com.example.happydog.databinding.FragmentInsuranceRecommendBinding;
@@ -35,6 +32,39 @@ public class InsuranceRecommendFragment extends Fragment {
         ImageView insurance_recommend1 = view.findViewById(R.id.insurance_recommend1);
         ImageView insurance_recommend2 = view.findViewById(R.id.insurance_recommend2);
         ImageView insurance_recommend3 = view.findViewById(R.id.insurance_recommend3);
+        ImageView insurance_recommend_back = view.findViewById(R.id.insurance_recommend_back);
+
+        insurance_recommend1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, InsuranceRecommend1Fragment.class, null).commit();
+            }
+        });
+
+        insurance_recommend2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, InsuranceRecommend2Fragment.class, null).commit();
+            }
+        });
+
+        insurance_recommend3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, InsuranceRecommend3Fragment.class, null).commit();
+            }
+        });
+
+        insurance_recommend_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, AccountFragment.class, null).commit();
+            }
+        });
 
         return view;
     }

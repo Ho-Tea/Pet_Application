@@ -94,8 +94,10 @@ public class AccountFragment extends Fragment {
         ImageView snackRecommendButton = view.findViewById(R.id.snack_recommend_button);
         ImageView insuranceRecommendButton = view.findViewById(R.id.insurance_recommend_button);
         ImageView setAccountButton = view.findViewById(R.id.btn_fix);
+        ImageView goBackButton = view.findViewById(R.id.account_back);
 
         feedRecommendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragments_frame, FeedRecommendFragment.class, null).commit();
@@ -103,6 +105,7 @@ public class AccountFragment extends Fragment {
         });
 
         snackRecommendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragments_frame, SnackRecommendFragment.class, null).commit();
@@ -110,6 +113,7 @@ public class AccountFragment extends Fragment {
         });
 
         insuranceRecommendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragments_frame, InsuranceRecommendFragment.class, null).commit();
@@ -117,12 +121,20 @@ public class AccountFragment extends Fragment {
         });
 
         setAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragments_frame, SetAccountFragment.class, null).commit();
             }
         });
 
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, ProfileFragment.class, null).commit();
+            }
+        });
 
         return view;
     }

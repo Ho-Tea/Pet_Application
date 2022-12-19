@@ -2,21 +2,16 @@ package com.example.happydog.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.happydog.R;
 import com.example.happydog.databinding.FragmentFeedRecommendBinding;
-
-import java.util.ArrayList;
 
 public class FeedRecommendFragment extends Fragment {
 
@@ -53,6 +48,63 @@ public class FeedRecommendFragment extends Fragment {
         ImageView feed_recommend4 = view.findViewById(R.id.feed_recommend4);
         ImageView feed_recommend5 = view.findViewById(R.id.feed_recommend5);
         ImageView feed_recommend6 = view.findViewById(R.id.feed_recommend6);
+        ImageView feed_recommend_back = view.findViewById(R.id.feed_recommend_back);
+
+        feed_recommend1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, FeedRecommend1Fragment.class, null).commit();
+            }
+        });
+
+        feed_recommend2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, FeedRecommend2Fragment.class, null).commit();
+            }
+        });
+
+        feed_recommend3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, FeedRecommend3Fragment.class, null).commit();
+            }
+        });
+
+        feed_recommend4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, FeedRecommend4Fragment.class, null).commit();
+            }
+        });
+
+        feed_recommend5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, FeedRecommend5Fragment.class, null).commit();
+            }
+        });
+
+        feed_recommend6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, FeedRecommend6Fragment.class, null).commit();
+            }
+        });
+
+        feed_recommend_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, AccountFragment.class, null).commit();
+            }
+        });
 
         return view;
     }
