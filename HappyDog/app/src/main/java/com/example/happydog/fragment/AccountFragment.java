@@ -2,18 +2,17 @@ package com.example.happydog.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.happydog.R;
 import com.example.happydog.databinding.FragmentAccountBinding;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -32,7 +31,7 @@ public class AccountFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private PieChart pieChart;
-    private int[] colorArray = new int[] {Color.LTGRAY, Color.BLUE, Color.RED};
+    private int[] colorArray = new int[] {Color.LTGRAY, Color.DKGRAY, Color.GRAY};
     private FragmentAccountBinding binding;
 
     // TODO: Rename and change types of parameters
@@ -51,6 +50,7 @@ public class AccountFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment AccountFragment.
      */
+
     // TODO: Rename and change types and number of parameters
     public static AccountFragment newInstance(String param1, String param2) {
         AccountFragment fragment = new AccountFragment();
@@ -82,24 +82,70 @@ public class AccountFragment extends Fragment {
         PieDataSet pieDataSet = new PieDataSet(data1(),"");
         pieDataSet.setColors(colorArray);
         PieData pieData = new PieData(pieDataSet);
-        pieChart.setDrawEntryLabels(false);
+        pieChart.setDrawEntryLabels(true);
         pieChart.setUsePercentValues(true);
-        pieData.setValueTextSize(30);
-        pieChart.setCenterText("사용내역");
-        pieChart.setCenterTextSize(25);
-        pieChart.setHoleRadius(30);
+        pieData.setValueTextSize(20);
+        pieChart.setHoleRadius(0);
         pieChart.setData(pieData);
         pieChart.getDescription().setEnabled(false);
         pieChart.invalidate();
 
+        ImageView feedRecommendButton = view.findViewById(R.id.feed_recommend_button);
+        ImageView snackRecommendButton = view.findViewById(R.id.snack_recommend_button);
+        ImageView insuranceRecommendButton = view.findViewById(R.id.insurance_recommend_button);
+        ImageView setAccountButton = view.findViewById(R.id.btn_fix);
+        ImageView goBackButton = view.findViewById(R.id.account_back);
+
+        feedRecommendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, FeedRecommendFragment.class, null).commit();
+            }
+        });
+
+        snackRecommendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, SnackRecommendFragment.class, null).commit();
+            }
+        });
+
+        insuranceRecommendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, InsuranceRecommendFragment.class, null).commit();
+            }
+        });
+
+        setAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, SetAccountFragment.class, null).commit();
+            }
+        });
+
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, ProfileFragment.class, null).commit();
+            }
+        });
+
         return view;
     }
+
     private ArrayList<PieEntry> data1(){
         ArrayList<PieEntry> datavalue = new ArrayList<>();
 
-        datavalue.add(new PieEntry(30,"무응답"));
-        datavalue.add(new PieEntry(50,"좋음"));
-        datavalue.add(new PieEntry(20,"싫음"));
+        datavalue.add(new PieEntry(30,"간식"));
+        datavalue.add(new PieEntry(50,"사료"));
+        datavalue.add(new PieEntry(20,"보험"));
         return datavalue;
     }
+
 }
