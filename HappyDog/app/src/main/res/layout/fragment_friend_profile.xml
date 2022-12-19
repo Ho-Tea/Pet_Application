@@ -73,16 +73,50 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:gravity="center"
-        android:hint="당신과 펫시팅계약을 맺은 횟수"
         android:inputType="textPersonName"
+        android:text="지금까지"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_textview_name"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="43dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="0"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_textview_name"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/profile_contract2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="번 계약을 맺었습니다!"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_textview_name"
+        app:layout_constraintVertical_bias="0.003" />
 
     <ImageView
         android:id="@+id/requestContract"

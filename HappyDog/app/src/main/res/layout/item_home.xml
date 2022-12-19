@@ -34,6 +34,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/location"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:text="위치"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.881"
+            app:layout_constraintStart_toEndOf="@+id/home_item_tv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.489" />
+
+        <TextView
             android:id="@+id/home_item_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
