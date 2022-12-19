@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,7 +22,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.happydog.MainActivity
 import com.example.happydog.MessageActivity
 import com.example.happydog.R
+import com.example.happydog.database
+import com.example.happydog.model.ChatModel
+import com.example.happydog.model.PetSitting
 import com.example.happydog.model.Profile
+import com.example.happydog.model.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,7 +35,11 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_message.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,9 +51,13 @@ import kotlinx.android.synthetic.main.fragment_profile.*
  */
 class FriendProfileFragment : Fragment() {
     companion object{
-        private var imageUri : Uri? = null
+        private var imageUri : String? = "https://www.eformsign.com/eform/document/external_user_view_service.html?company_id=78e37bac301b49b78c16642375b2c2cc&form_id=740c39a42add4b7d8af82fb8ad024d02&recipient="
+        private var uri : String? = "Contract"
         private val fireStorage = FirebaseStorage.getInstance().reference
         private val fireDatabase = FirebaseDatabase.getInstance().reference
+        private val user = Firebase.auth.currentUser
+        private val countList = HashMap<String,Int>()
+        private val count = 0
         private lateinit var uid : String
         private var friendUid : String? = "0"
         fun newInstance(uid : String) : FriendProfileFragment {
@@ -81,6 +94,7 @@ class FriendProfileFragment : Fragment() {
         val cancelButton = view?.findViewById<ImageView>(R.id.cancel)
         val msgButton = view?.findViewById<ImageView>(R.id.sendMessage)
         val requestPet = view?.findViewById<ImageView>(R.id.requestContract)
+        val counted = view?.findViewById<TextView>(R.id.count)
 
         //프로필 구현
         fireDatabase.child("users").child(uid).addListenerForSingleValueEvent(object :
@@ -95,19 +109,54 @@ class FriendProfileFragment : Fragment() {
                     .into(photo!!)
                 email?.text = userProfile?.email
                 name?.text = userProfile?.name
-                friendUid = userProfile?.uid
 
+                friendUid = userProfile?.uid
+                if(countList.containsKey(friendUid)) {
+                    counted?.text = countList.getValue(friendUid.toString()).toString()
+                }
             }
         })
+
+
         cancelButton?.setOnClickListener {
             (activity as MainActivity).fragmentChange(FriendFragment.newInstance())
         }
         msgButton?.setOnClickListener {
             val intent = Intent(context, MessageActivity::class.java)
             intent.putExtra("destinationUid", friendUid)
+            intent.putExtra("request", "0")
             context?.startActivity(intent)
+        }
+
+        requestPet?.setOnClickListener {
+            val intent = Intent(context, MessageActivity::class.java)
+            intent.putExtra("destinationUid", friendUid)
+            intent.putExtra("request", "1")
+            if (countList.containsKey(friendUid.toString())) {
+                countList.set(friendUid.toString(), countList.getValue(friendUid.toString()) + 1)
+            } else {
+                countList.put(friendUid.toString(), 1)
+            }
+
+
+//            FirebaseStorage.getInstance().reference.child("petsitting")
+//                .child("default/delete.png").downloadUrl
+//                .addOnSuccessListener {
+                            val petsitting = PetSitting(
+                                user.toString(),
+                                friendUid,
+                                uri.toString(),
+                                countList.getValue(friendUid.toString()).toString()
+                            )
+
+                            fireDatabase.child("petsitting").child(user.toString())
+                                .setValue(petsitting)
+//                        }
+            context?.startActivity(intent)
+
         }
 
         return view
     }
+
 }

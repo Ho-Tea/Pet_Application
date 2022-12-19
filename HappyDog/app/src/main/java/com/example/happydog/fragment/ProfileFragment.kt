@@ -20,7 +20,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.happydog.MainActivity
 import com.example.happydog.R
+import com.example.happydog.model.PetSitting
 import com.example.happydog.model.Profile
+import com.example.happydog.model.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -99,6 +101,7 @@ class ProfileFragment : Fragment() {
         val button = view?.findViewById<Button>(R.id.profile_button)
         val mbti_button = view?.findViewById<ImageView>(R.id.mbti_button)
         val account_button = view?.findViewById<ImageView>(R.id.account)
+        val petsitting = view?.findViewById<ImageView>(R.id.petsitting)
 
 
         //프로필 구현
@@ -134,6 +137,24 @@ class ProfileFragment : Fragment() {
 //                Toast.makeText(requireContext(), "이름이 변경되었습니다.", Toast.LENGTH_SHORT).show()
 //            }
 
+        }
+        petsitting?.setOnClickListener{
+            var friendUid : String = "0"
+            FirebaseDatabase.getInstance().reference.child("petsitting")
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(error: DatabaseError) {
+                    }
+
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (data in snapshot.children) {
+                            val item = data.getValue<PetSitting>()
+                            if (item?.uid.equals(user.toString())) {
+                                friendUid = item?.destUid.toString()
+                            } // 본인은 친구창에서 제외
+                        }
+                    }
+                })
+            (activity as MainActivity).fragmentChange(PetSittingFragment.newInstance(friendUid))
         }
 
         mbti_button?.setOnClickListener{
