@@ -162,7 +162,9 @@ class ChatFragment : Fragment() {
             commentMap.putAll(chatModels[position].comments)
             val lastMessageKey = commentMap.keys.toTypedArray()[0]
             holder.textView_lastMessage.text = chatModels[position].comments[lastMessageKey]?.message
-
+            if(holder.textView_lastMessage.text.length > 20) {
+                holder.textView_lastMessage.text = holder.textView_lastMessage.text.substring(0,18)
+            }
             //채팅창 선책 시 이동
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, MessageActivity::class.java)
@@ -257,6 +259,9 @@ class ChatFragment : Fragment() {
             commentMap.putAll(chatModel[position].comments)
             val lastMessageKey = commentMap.keys.toTypedArray()[0]
             holder.textView_lastMessage.text = chatModel[position].comments[lastMessageKey]?.message
+            if(holder.textView_lastMessage.text.length > 20) {
+                holder.textView_lastMessage.text = holder.textView_lastMessage.text.substring(0,18)
+            }
 
             //채팅창 선책 시 이동
             holder.itemView.setOnClickListener {

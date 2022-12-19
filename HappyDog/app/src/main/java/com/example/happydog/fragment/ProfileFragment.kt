@@ -138,23 +138,19 @@ class ProfileFragment : Fragment() {
 //            }
 
         }
+        var friendUid : String? = null
         petsitting?.setOnClickListener{
-            var friendUid : String = "0"
-            FirebaseDatabase.getInstance().reference.child("petsitting")
-                .addValueEventListener(object : ValueEventListener {
+            fireDatabase.child("petsitting").child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
                     }
-
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        for (data in snapshot.children) {
-                            val item = data.getValue<PetSitting>()
-                            if (item?.uid.equals(user.toString())) {
-                                friendUid = item?.destUid.toString()
-                            } // 본인은 친구창에서 제외
-                        }
+                        val petsitt = snapshot.getValue<PetSitting>()
+                        println(petsitt)
+                        friendUid = petsitt?.destUid
+                        (activity as MainActivity).fragmentChange(PetSittingFragment.newInstance(friendUid.toString()))
                     }
                 })
-            (activity as MainActivity).fragmentChange(PetSittingFragment.newInstance(friendUid))
+
         }
 
         mbti_button?.setOnClickListener{

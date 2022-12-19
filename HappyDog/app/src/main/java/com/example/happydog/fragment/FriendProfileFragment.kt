@@ -52,7 +52,6 @@ import kotlin.collections.HashMap
 class FriendProfileFragment : Fragment() {
     companion object{
         private var imageUri : String? = "https://www.eformsign.com/eform/document/external_user_view_service.html?company_id=78e37bac301b49b78c16642375b2c2cc&form_id=740c39a42add4b7d8af82fb8ad024d02&recipient="
-        private var uri : String? = "Contract"
         private val fireStorage = FirebaseStorage.getInstance().reference
         private val fireDatabase = FirebaseDatabase.getInstance().reference
         private val user = Firebase.auth.currentUser
@@ -97,7 +96,7 @@ class FriendProfileFragment : Fragment() {
         val counted = view?.findViewById<TextView>(R.id.count)
 
         //프로필 구현
-        fireDatabase.child("users").child(uid).addListenerForSingleValueEvent(object :
+        fireDatabase.child("users").child(uid.toString()).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
             }
@@ -143,13 +142,13 @@ class FriendProfileFragment : Fragment() {
 //                .child("default/delete.png").downloadUrl
 //                .addOnSuccessListener {
                             val petsitting = PetSitting(
-                                user.toString(),
-                                friendUid,
-                                uri.toString(),
+                                user?.uid.toString(),
+                                friendUid.toString(),
+                                imageUri.toString(),
                                 countList.getValue(friendUid.toString()).toString()
                             )
 
-                            fireDatabase.child("petsitting").child(user.toString())
+                            fireDatabase.child("petsitting").child(user?.uid.toString())
                                 .setValue(petsitting)
 //                        }
             context?.startActivity(intent)

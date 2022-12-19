@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.happydog.MainActivity
 import com.example.happydog.R
+import com.example.happydog.model.Friend
 import com.example.happydog.model.Profile
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,10 +23,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.storage.FirebaseStorage
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -40,7 +37,7 @@ class PetSittingFragment : Fragment() {
         private val countList = HashMap<String,Int>()
         private val count = 0
         private lateinit var uid : String
-        private var friendUid : String? = "0"
+        private var friendUid : String = "0"
         fun newInstance(uid : String) : PetSittingFragment {
             this.uid = uid
             return PetSittingFragment()
@@ -68,12 +65,12 @@ class PetSittingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //view 선언을 안하고 return에 바로 적용시키면 glide가 작동을 안함
-        val view = inflater.inflate(R.layout.fragment_friend_profile, container, false)
-        val photo = view?.findViewById<ImageView>(R.id.profile_imageview)
-        val name = view?.findViewById<TextView>(R.id.profile_textview_name)
-        val email = view?.findViewById<TextView>(R.id.profile_textview_email)
+        val view = inflater.inflate(R.layout.fragment_pet_sitting, container, false)
+        val photo = view?.findViewById<ImageView>(R.id.home_item_iv)
+        val name = view?.findViewById<TextView>(R.id.home_item_tv)
+        val email = view?.findViewById<TextView>(R.id.home_item_email)
         val cancelButton = view?.findViewById<ImageView>(R.id.cancel)
-        val url = view?.findViewById<ImageView>(R.id.url)
+        val url = view?.findViewById<ImageView>(R.id.urls)
 
 
         //프로필 구현
@@ -90,8 +87,6 @@ class PetSittingFragment : Fragment() {
                 email?.text = userProfile?.email
                 name?.text = userProfile?.name
 
-                friendUid = userProfile?.uid
-
             }
         })
         cancelButton?.setOnClickListener {
@@ -100,7 +95,6 @@ class PetSittingFragment : Fragment() {
         url?.setOnClickListener() {
             val MyIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.eformsign.com/eform/document/external_user_view_service.html?company_id=78e37bac301b49b78c16642375b2c2cc&form_id=740c39a42add4b7d8af82fb8ad024d02&recipient="))
             startActivity(MyIntent)
-
         }
         return view
     }
