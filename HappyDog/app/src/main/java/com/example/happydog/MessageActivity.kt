@@ -34,12 +34,13 @@ class MessageActivity : AppCompatActivity() {
     private val fireDatabase = FirebaseDatabase.getInstance().reference
     private var chatRoomUid : String? = null
     private var destinationUid : String? = null
+    private var request : String? = null
     private var uid : String? = null
     private var recyclerView : RecyclerView? = null
 
 
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message)
@@ -52,6 +53,7 @@ class MessageActivity : AppCompatActivity() {
         val curTime = dateFormat.format(Date(time)).toString()
 
         destinationUid = intent.getStringExtra("destinationUid")
+        request = intent.getStringExtra("request")
         uid = Firebase.auth.currentUser?.uid.toString()
         recyclerView = findViewById(R.id.messageActivity_recyclerview)
 
@@ -87,7 +89,38 @@ class MessageActivity : AppCompatActivity() {
         }
 
             checkChatRoom()
+
+
+
+        if(request.equals("1")){
+            Log.d("클릭 시 dest", "$destinationUid")
+            val requestText = "https://www.eformsign.com/eform/document/external_user_view_service.html?company_id=78e37bac301b49b78c16642375b2c2cc&form_id=740c39a42add4b7d8af82fb8ad024d02&recipient="
+//            val chatModel2 = ChatModel()
+//            chatModel2.users.put(uid.toString(), true)
+//            chatModel2.users.put(destinationUid!!, true)
+
+            val comment = Comment(uid, requestText, curTime)
+//            if(chatRoomUid == null){
+//            imageView.isEnabled = false
+//                fireDatabase.child("chatrooms").push().setValue(chatModel2).addOnSuccessListener {
+//                    //채팅방 생성
+//            checkChatRoom()
+//                    //메세지 보내기
+                    Handler().postDelayed({
+                        println(chatRoomUid)
+                        fireDatabase.child("chatrooms").child(chatRoomUid.toString()).child("comments").push().setValue(comment)
+                        messageActivity_editText.text = null
+                    }, 1000L)
+//                    Log.d("chatUidNull dest", "$destinationUid")
+//                }
+//            }else{
+//            fireDatabase.child("chatrooms").child(chatRoomUid.toString()).child("comments").push().setValue(comment)
+//                messageActivity_editText.text = null
+            Log.d("chatUidNotNull dest", "$destinationUid")
+//            }
+        }
     }
+
 
 
     private fun checkChatRoom(){

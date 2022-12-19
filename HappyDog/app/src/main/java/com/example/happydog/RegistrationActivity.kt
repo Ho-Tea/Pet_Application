@@ -171,7 +171,7 @@ class RegistrationActivity : AppCompatActivity() {
                                                 user.uid = userIdSt
                                                 user.longtitude = longti
                                                 user.latitude = lati
-                                                Regsiter(user)
+//                                                Regsiter(user)
 
 
                                                 database.child("users").child(userId.toString())

@@ -73,6 +73,7 @@ class FriendFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = RecyclerViewAdapter()
         val cancelButton = view.findViewById<ImageView>(R.id.cancelItem)
+        val addfriend = view.findViewById<ImageView>(R.id.addpet_image)
         val search_edt=view.findViewById<EditText>(R.id.search_view)
         search_edt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(edit: Editable?) {
@@ -95,6 +96,10 @@ class FriendFragment : Fragment() {
         cancelButton?.setOnClickListener {
             (activity as MainActivity).fragmentChange(newInstance())
         }
+//        addfriend?.setOnClickListener {
+//            ()
+//        }
+
 
 
         return view
@@ -111,6 +116,7 @@ class FriendFragment : Fragment() {
             val imageView: ImageView = itemView.findViewById(R.id.home_item_iv)
             val textView: TextView = itemView.findViewById(R.id.home_item_tv)
             val textViewEmail: TextView = itemView.findViewById(R.id.home_item_email)
+            val locationView : TextView = itemView.findViewById(R.id.location)
 
 //
         }
@@ -121,6 +127,7 @@ class FriendFragment : Fragment() {
                     .into(holder.imageView)
                 holder.textView.text = filterFriends[position].name
                 holder.textViewEmail.text = filterFriends[position].email
+                holder.locationView.text = filterFriends[position].location
                 holder.imageView.setOnClickListener {
                     (activity as MainActivity).fragmentChange(
                         FriendProfileFragment.newInstance(
@@ -177,6 +184,7 @@ class FriendFragment : Fragment() {
             val imageView: ImageView = itemView.findViewById(R.id.home_item_iv)
             val textView: TextView = itemView.findViewById(R.id.home_item_tv)
             val textViewEmail: TextView = itemView.findViewById(R.id.home_item_email)
+            val locationView : TextView = itemView.findViewById(R.id.location)
 //            val selfImageView: ImageView = itemView.findViewById(R.id.home_item_self_iv)
 //            val selfTextView : TextView = itemView.findViewById(R.id.home_item_self_tv)
 //            val heartImage : ImageView = itemView.findViewById(R.id.home_item_self_vv)
@@ -189,6 +197,7 @@ class FriendFragment : Fragment() {
                     .into(holder.imageView)
                 holder.textView.text = "내 프로필"
                 holder.textViewEmail.text = ""
+                holder.locationView.text = friend[position].location
                 holder.itemView.setOnClickListener {
                     (activity as MainActivity).fragmentChange(ProfileFragment.newInstance())
                 }
@@ -198,6 +207,7 @@ class FriendFragment : Fragment() {
                     .into(holder.imageView)
                 holder.textView.text = friend[position].name
                 holder.textViewEmail.text = friend[position].email
+                holder.locationView.text = friend[position].location
                 holder.itemView.setOnClickListener {
                     (activity as MainActivity).fragmentChange(FriendProfileFragment.newInstance(friend[position].uid.toString()))
                 }
