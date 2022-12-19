@@ -31,7 +31,7 @@ public class AccountFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private PieChart pieChart;
-    private int[] colorArray = new int[] {Color.LTGRAY, Color.BLUE, Color.RED};
+    private int[] colorArray = new int[] {Color.LTGRAY, Color.DKGRAY, Color.GRAY};
     private FragmentAccountBinding binding;
 
     // TODO: Rename and change types of parameters
@@ -50,6 +50,7 @@ public class AccountFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment AccountFragment.
      */
+
     // TODO: Rename and change types and number of parameters
     public static AccountFragment newInstance(String param1, String param2) {
         AccountFragment fragment = new AccountFragment();
@@ -84,7 +85,7 @@ public class AccountFragment extends Fragment {
         pieChart.setDrawEntryLabels(true);
         pieChart.setUsePercentValues(true);
         pieData.setValueTextSize(20);
-        pieChart.setHoleRadius(40);
+        pieChart.setHoleRadius(0);
         pieChart.setData(pieData);
         pieChart.getDescription().setEnabled(false);
         pieChart.invalidate();
@@ -92,6 +93,7 @@ public class AccountFragment extends Fragment {
         ImageView feedRecommendButton = view.findViewById(R.id.feed_recommend_button);
         ImageView snackRecommendButton = view.findViewById(R.id.snack_recommend_button);
         ImageView insuranceRecommendButton = view.findViewById(R.id.insurance_recommend_button);
+        ImageView setAccountButton = view.findViewById(R.id.btn_fix);
 
         feedRecommendButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -114,6 +116,13 @@ public class AccountFragment extends Fragment {
             }
         });
 
+        setAccountButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragments_frame, SetAccountFragment.class, null).commit();
+            }
+        });
+
 
         return view;
     }
@@ -126,6 +135,5 @@ public class AccountFragment extends Fragment {
         datavalue.add(new PieEntry(20,"보험"));
         return datavalue;
     }
-
 
 }
