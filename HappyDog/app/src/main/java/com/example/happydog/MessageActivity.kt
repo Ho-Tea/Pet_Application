@@ -24,6 +24,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_message.*
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -94,7 +95,10 @@ class MessageActivity : AppCompatActivity() {
 
         if(request.equals("1")){
             Log.d("클릭 시 dest", "$destinationUid")
-            val requestText = "https://www.eformsign.com/eform/document/external_user_view_service.html?company_id=78e37bac301b49b78c16642375b2c2cc&form_id=740c39a42add4b7d8af82fb8ad024d02&recipient="
+            var Click = URL("https://www.eformsign.com/eform/document/external_user_view_service.html?company_id=78e37bac301b49b78c16642375b2c2cc&form_id=740c39a42add4b7d8af82fb8ad024d02&recipient=")
+            val requestText = "펫시팅 계약 요청이 들어왔어요!😊\n" + "=======URL=======\n" + Click +
+                    "\n=================\n 위의 링크로 들어가서 계약서를 확인하세요!\n" +
+                    "1️⃣ 계약서의 서명을 합니다 \n 2️⃣ 서명된 계약서는 상호간 보존되며 펫시팅 계약내역에서 확인하실 수 있습니다."
 //            val chatModel2 = ChatModel()
 //            chatModel2.users.put(uid.toString(), true)
 //            chatModel2.users.put(destinationUid!!, true)

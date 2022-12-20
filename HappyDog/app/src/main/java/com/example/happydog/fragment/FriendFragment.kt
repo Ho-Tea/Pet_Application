@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,13 +25,17 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.happydog.MainActivity
 import com.example.happydog.MessageActivity
 import com.example.happydog.R
+import com.example.happydog.RetrofitBuilder
+import com.example.happydog.model.PetSitting
 import com.example.happydog.model.Profile
+import com.example.happydog.model.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
+import retrofit2.Call
 
 
 class FriendFragment : Fragment() {
@@ -44,6 +49,9 @@ class FriendFragment : Fragment() {
     private var friend: ArrayList<Profile> = arrayListOf()
     private var filterFriends: ArrayList<Profile> = arrayListOf()
     var textlength = 0
+
+
+
 
     //메모리에 올라갔을 때
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,9 +104,9 @@ class FriendFragment : Fragment() {
         cancelButton?.setOnClickListener {
             (activity as MainActivity).fragmentChange(newInstance())
         }
-//        addfriend?.setOnClickListener {
-//            ()
-//        }
+        addfriend?.setOnClickListener {
+            (activity as MainActivity).fragmentChange(PlusFriendFragment.newInstance())
+        }
 
 
 
@@ -118,7 +126,7 @@ class FriendFragment : Fragment() {
             val textViewEmail: TextView = itemView.findViewById(R.id.home_item_email)
             val locationView : TextView = itemView.findViewById(R.id.location)
 
-//
+
         }
 
         override fun onBindViewHolder(holder: SecondCustomViewHolder, position: Int) {
@@ -152,19 +160,28 @@ class FriendFragment : Fragment() {
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder>() {
         init {
             val myUid = Firebase.auth.currentUser?.uid.toString()
-            FirebaseDatabase.getInstance().reference.child("users")
+            FirebaseDatabase.getInstance().reference.child("users").child(myUid).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val myProfile = snapshot.getValue<Profile>()
+                    friend.clear()
+                    friend.add(0, myProfile!!)
+                }
+            })
+            FirebaseDatabase.getInstance().reference.child("friends").child(myUid)
                 .addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {
                     }
 
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        friend.clear()
+
                         for (data in snapshot.children) {
                             val item = data.getValue<Profile>()
-                            if (item?.uid.equals(myUid)) {
-                                friend.add(0, item!!)
-                                continue
-                            } // 본인은 친구창에서 제외
+//                            if (item?.uid.equals(myUid)) {
+//
+//                                continue
+//                            } // 본인은 친구창에서 제외
                             friend.add(item!!)
                         }
                         notifyDataSetChanged()

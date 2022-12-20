@@ -42,6 +42,7 @@ class RegistrationActivity : AppCompatActivity() {
         val call = RetrofitBuilder.api.postLocationResponse(user)
         call.enqueue(object :  retrofit2.Callback<String> {
             override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
+                Log.d("히히히히히히히히히ㅣㅎ",response.body().toString())
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
@@ -168,10 +169,10 @@ class RegistrationActivity : AppCompatActivity() {
                                                 )
                                                 val user = User()
                                                 user.email = email.toString()
+                                                user.username = name.toString()
                                                 user.uid = userIdSt
-                                                user.longtitude = longti
-                                                user.latitude = lati
-//                                                Regsiter(user)
+                                                user.coordinate = User.CoordinateDto(longti, lati)
+                                                Regsiter(user)
 
 
                                                 database.child("users").child(userId.toString())

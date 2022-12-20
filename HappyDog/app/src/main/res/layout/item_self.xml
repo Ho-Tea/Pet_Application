@@ -4,58 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
+    android:background="#f1f3f5"
     android:orientation="horizontal">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="374dp"
-        android:layout_height="114dp"
-        android:background="#FFFFFF"
+        android:layout_width="380dp"
+        android:layout_height="97dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/bar_third"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginBottom="6dp">
 
         <ImageView
-            android:id="@+id/home_item_self_iv"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:id="@+id/home_item_iv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/user"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/home_item_self_tv"
-            android:layout_width="61dp"
-            android:layout_height="41dp"
+            android:id="@+id/location"
+            android:layout_width="96dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="위치"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.469"
+            app:layout_constraintStart_toEndOf="@+id/home_item_tv"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+        <TextView
+            android:id="@+id/home_item_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="4dp"
             android:text="이름"
             android:textColor="#000000"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/home_item_self_iv"
-            app:layout_constraintTop_toTopOf="@+id/home_item_self_iv" />
+            app:layout_constraintBottom_toTopOf="@+id/home_item_email"
+            app:layout_constraintStart_toEndOf="@+id/home_item_iv"
+            app:layout_constraintTop_toTopOf="@+id/home_item_iv" />
+
+        <TextView
+            android:id="@+id/home_item_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="6dp"
+            android:text="이메일"
+            android:textColor="#8A252525"
+            app:layout_constraintBottom_toBottomOf="@+id/home_item_iv"
+            app:layout_constraintStart_toEndOf="@+id/home_item_iv"
+            app:layout_constraintTop_toBottomOf="@+id/home_item_tv" />
 
         <ImageView
-            android:id="@+id/home_item_self_vv"
-            android:layout_width="52dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/heart"
+            android:id="@+id/plusbutton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/plus"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.905"
-            app:layout_constraintStart_toEndOf="@+id/home_item_self_tv"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toEndOf="@+id/location"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.34">
 
         </ImageView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

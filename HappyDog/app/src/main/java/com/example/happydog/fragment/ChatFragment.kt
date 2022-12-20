@@ -34,11 +34,13 @@ import java.util.Collections.reverseOrder
 import kotlin.collections.ArrayList
 
 class ChatFragment : Fragment() {
+    
     companion object{
                 fun newInstance() : ChatFragment {
             return ChatFragment()
         }
     }
+    
     private val fireDatabase = FirebaseDatabase.getInstance().reference
     private val chatModels = ArrayList<ChatModel>()
     private val friends: ArrayList<Profile> = arrayListOf()
