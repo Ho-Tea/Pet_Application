@@ -37,18 +37,19 @@ Kotlin + Firebase, RealTimeDatabase 기반의 어플리케이션
 
 
 <br/>
+
 <div align="center">
 
-## ⚡️ UI
+# ⚡️ UI
 
 
-- <img src ="Image/intro.png" width ="600" height="600"> . 
+<img src ="Image/intro.png" width ="600" height="600"> . 
   
-- <img src ="Image/profile.png" width ="600" height="600"> . 
+<img src ="Image/profile.png" width ="600" height="600"> . 
 
-- <img src ="Image/friend.png" width ="600" height="600"> . 
+<img src ="Image/friend.png" width ="600" height="600"> . 
 
-- <img src ="Image/add.png" width ="300" height="600"> <img src ="Image/contract.png"  width ="300" height="600"> . 
+<img src ="Image/add.png" width ="300" height="600"> <img src ="Image/contract.png"  width ="300" height="600"> . 
 
 <br/>
 
