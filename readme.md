@@ -54,10 +54,10 @@ Kotlin + Firebase, RealTimeDatabase 기반의 어플리케이션
 <br/>
 
 
-## <시연 영상>
+## <center> <시연 영상> </center>
 
-- <img src = "Image/0.gif"> . 
+<center><img src="Image/0.gif" width ="300" height="600"></center> . 
 
-- <img src = "Image/1.gif"> . 
+<center><img src="Image/1.gif" width="300" height="600"></center> . 
 
-- <img src = "Image/3.gif"> . 
+<center><img src="Image/3.gif" width="300" height="600"></center>
