@@ -1,8 +1,10 @@
 <h1> ️# 🐶HappyDog </h1>
 
-Kotlin + Firebase, RealTimeDatabase 기반의 어플리케이션
+## Kotlin + Firebase, RealTimeDatabase 기반의 어플리케이션
 
 - 제작기간 : 2022.11.10 ~ 12.21
+
+<br/>
 
 ## 🛠사용 기술 & 개발 환경
 
@@ -13,7 +15,9 @@ Kotlin + Firebase, RealTimeDatabase 기반의 어플리케이션
 - Mac OS
 - Retrofit2
 - GeoCoder
-- + Spring boot
+- Spring boot
+
+<br/>
 
 ## 📌주요 키워드
 
@@ -26,6 +30,7 @@ Kotlin + Firebase, RealTimeDatabase 기반의 어플리케이션
 
 
 <br/>
+
 
 ## 💣 Class Diagram
 - ### Sequence Diagram
@@ -40,7 +45,7 @@ Kotlin + Firebase, RealTimeDatabase 기반의 어플리케이션
 
 <div align="center">
 
-# ⚡️ UI
+# <UI>
 
 
 <img src ="Image/intro.png" width ="600" height="600"> . 
