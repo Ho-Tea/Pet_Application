@@ -55,22 +55,22 @@
 
 
 # < User Interface >
-- <img src ="Image/intro.png" width ="600" height="600"> . 
+- <img src ="Image/intro.png" width ="400" height="400"> . 
   
-- <img src ="Image/profile.png" width ="600" height="600"> . 
+- <img src ="Image/profile.png" width ="400" height="400"> . 
 
-- <img src ="Image/friend.png" width ="600" height="600"> . 
+- <img src ="Image/friend.png" width ="400" height="400"> . 
 
-- <img src ="Image/add.png" width ="300" height="600"> <img src ="Image/contract.png"  width ="300" height="600"> . 
+- <img src ="Image/add.png" width ="300" height="400"> <img src ="Image/contract.png"  width ="300" height="400"> . 
 
 <br/>
 
 
 # <center> <시연 영상> </center>
 
-<center><img src="Image/0.gif" width ="300" height="600"> <img src="Image/1.gif" width="300" height="600"></center> . 
+<center><img src="Image/0.gif" width ="250" height="450"> <img src="Image/1.gif" width="250" height="450"></center> . 
 
-<center><img src="Image/3.gif" width="300" height="600"></center>
+<center><img src="Image/3.gif" width="250" height="450"></center>
 
 
 </div>
